@@ -1,0 +1,37 @@
+plugins {
+    id 'application'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // web deps
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // tracing aspect deps
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+}
+
+testing {
+    suites {
+        // Configure the built-in test suite
+        test {
+            // Use JUnit Jupiter test framework
+            useJUnitJupiter('5.10.3')
+        }
+    }
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'de.andre.tracing'
+}
